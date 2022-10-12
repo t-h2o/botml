@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/bin/python3
 # pylint: disable=C0116,W0613
 # This program is dedicated to the public domain under the CC0 license.
 
@@ -14,6 +14,7 @@ bot.
 """
 
 import logging
+from mysecret import mytoken
 
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import (
@@ -136,7 +137,7 @@ def cancel(update: Update, context: CallbackContext) -> int:
 def main() -> None:
     """Run the bot."""
     # Create the Updater and pass it your bot's token.
-    updater = Updater("TOKEN")
+    updater = Updater(mytoken)
 
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher

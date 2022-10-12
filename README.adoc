@@ -5,6 +5,20 @@
 1. Send a photo and a description to a telegram bot
 2. With an python script, insert the photo into a website
 
+== Usage
+
+=== Create mysecret.py
+
+1. Get a bot token (talk with the botfather)
+2. Put the secret data into the file
+
+[source, sh]
+----
+echo mytoken = \'${BOT_TOKEN}\' >> bot/mysecret.py
+----
+
+3. Launch the main script
+
 == Resources
 
 === manipulate HTML
