@@ -7,4 +7,12 @@
 
 == Resources
 
-Usage of library https://www.crummy.com/software/BeautifulSoup/bs4/doc/[BeautifulSoup]
+=== manipulate HTML
+
+*  https://www.crummy.com/software/BeautifulSoup/bs4/doc/[BeautifulSoup]
+
+=== Telegram bot
+
+* https://core.telegram.org/bots/samples[List of resources by language]
+** __I choose this one for python https://github.com/python-telegram-bot/python-telegram-bot[python-telegram-bot]__
+*** Use this example https://docs.python-telegram-bot.org/en/v20.0a4/examples.conversationbot.html#conversationbot-diagram[conversationbot.py]
