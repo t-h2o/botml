@@ -16,6 +16,7 @@ bot.
 import logging
 from mysecret import mytoken
 from datetime import datetime
+import bs4
 
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import (
@@ -67,12 +68,28 @@ def gender(update: Update, context: CallbackContext) -> int:
 
 
 def photo(update: Update, context: CallbackContext) -> int:
+
     """Stores the photo and asks for a location."""
     user = update.message.from_user
     photo_file = update.message.photo[-1].get_file()
     now = datetime.now()
     filename = now.strftime("%y%m%d_%H%M.jpg")
     photo_file.download(filename)
+
+    # load the file
+    with open("index.html") as inf:
+        txt = inf.read()
+        soup = bs4.BeautifulSoup(txt)
+
+    # create new image
+    new_link = soup.new_tag("img", src=filename)
+    # insert it into the document
+    soup.head.append(new_link)
+
+    # save the file again
+    with open("index.html", "w") as outf:
+        outf.write(str(soup))
+
     logger.info("Photo of %s: %s", user.first_name, filename)
     update.message.reply_text(
         'Gorgeous! Now, send me your location please, or send /skip if you don\'t want to.'
