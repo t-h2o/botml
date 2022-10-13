@@ -18,6 +18,8 @@ from mysecret import mytoken
 from datetime import datetime
 import bs4
 
+webpath = /var/www/mywebsite/html/
+
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import (
     Updater,
@@ -74,10 +76,10 @@ def photo(update: Update, context: CallbackContext) -> int:
     photo_file = update.message.photo[-1].get_file()
     now = datetime.now()
     filename = now.strftime("%y%m%d_%H%M.jpg")
-    photo_file.download(filename)
+    photo_file.download(webpath + filename)
 
     # load the file
-    with open("index.html") as inf:
+    with open(webpath + "index.html") as inf:
         txt = inf.read()
         soup = bs4.BeautifulSoup(txt)
 
@@ -87,7 +89,7 @@ def photo(update: Update, context: CallbackContext) -> int:
     soup.head.append(new_link)
 
     # save the file again
-    with open("index.html", "w") as outf:
+    with open(webpath + "index.html", "w") as outf:
         outf.write(str(soup))
 
     logger.info("Photo of %s: %s", user.first_name, filename)
